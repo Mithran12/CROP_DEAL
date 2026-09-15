@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="assets/CropDeal.png" alt="CropDeal" width="700"/>
+<img src="assets/CropDeal.png" alt="CropDeal" width="100%"/>
 
 # CropDeal
 
@@ -897,5 +897,13 @@ By combining **Spring Boot, Spring Cloud, Eureka, RabbitMQ, Angular, centralized
 ### Connecting Farmers. Empowering Dealers. Simplifying Crop Trade.
 
 **Built with ❤️ using Spring Boot, Microservices & RabbitMQ.**
+
+</div>
+
+---
+
+<div align="center">
+
+<img src="assets/CropDeal.png" alt="CropDeal" width="100%"/>
 
 </div>
