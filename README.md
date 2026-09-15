@@ -904,6 +904,6 @@ By combining **Spring Boot, Spring Cloud, Eureka, RabbitMQ, Angular, centralized
 
 <div align="center">
 
-<img src="assets/CropDeal.png" alt="CropDeal" width="100%"/>
+<img src="assets/CropThanks.png" alt="CropDeal" width="100%"/>
 
 </div>
