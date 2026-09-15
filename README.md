@@ -71,7 +71,7 @@ The system is implemented using a **Spring Boot Microservices Architecture** wit
 | # | Team Member | GitHub Profile | Service Responsibility |
 |---:|---|---|---|
 | 1 | **Janani J** | [jananijagan](https://github.com/jananijagan) | `Product_Service` |
-| 2 | **Harshini R** | [harshu-2025](https://github.com/harshu-2025) | `API_Gateway`, `Eureka_Server`, `Config_Service`, `User_Service` |
+| 2 | **Harshini R** | [harshu-2025](https://github.com/harshu-2025) | `API_Gateway`, `Eureka_Server`, `Config_Service`, `Auth_Service` |
 | 3 | **Gobika S** | [Gobika-Subramaniam](https://github.com/Gobika-Subramaniam) | `Order_Service` |
 | 4 | **Sriman Ragaventra S K** | [srimansk](https://github.com/srimansk) | `Report_Service` |
 | 5 | **Hinthu Mithran P** | [Mithran12](https://github.com/Mithran12) | `Payment_Service`, `Notification_Service` |
