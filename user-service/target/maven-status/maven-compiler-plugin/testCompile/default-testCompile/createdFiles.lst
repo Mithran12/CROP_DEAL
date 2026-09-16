@@ -1,0 +1,5 @@
+com\cropdeal\user\service\impl\FarmerServiceImplTest.class
+com\cropdeal\user\controller\FarmerControllerTest.class
+com\cropdeal\user\controller\DealerControllerTest.class
+com\cropdeal\user\service\impl\DealerServiceImplTest.class
+com\cropdeal\user\UserServiceApplicationTests.class
