@@ -70,7 +70,7 @@ The system is implemented using a **Spring Boot Microservices Architecture** wit
 
 | # | Team Member | GitHub Profile | Service Responsibility |
 |---:|---|---|---|
-| 1 | **Janani J** | [jananijagan](https://github.com/jananijagan) | `Product_Service` |
+| 1 | **Janani J** | [jananijagan](https://github.com/jananijagan) | `Product_Service`,`User_Service`|
 | 2 | **Harshini R** | [harshu-2025](https://github.com/harshu-2025) | `API_Gateway`, `Eureka_Server`, `Config_Service`, `Auth_Service` |
 | 3 | **Gobika S** | [Gobika-Subramaniam](https://github.com/Gobika-Subramaniam) | `Order_Service` |
 | 4 | **Sriman Ragaventra S K** | [srimansk](https://github.com/srimansk) | `Report_Service` |
@@ -84,6 +84,7 @@ The system is implemented using a **Spring Boot Microservices Architecture** wit
 |---|---|
 | **API Gateway** | Single entry point for client requests and service routing |
 | **Eureka Server** | Service registration and service discovery |
+| **User Service** | Manages farmer and dealer registration, authentication and access control |
 | **Config Service** | Centralized external configuration |
 | **User Service** | Farmer and dealer registration, login and profile management |
 | **Product Service** | Crop publishing and crop information management |
