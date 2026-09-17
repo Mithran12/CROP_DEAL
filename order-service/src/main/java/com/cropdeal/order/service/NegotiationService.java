@@ -9,29 +9,18 @@ import com.cropdeal.order.dto.response.OfferResponseDto;
 
 public interface NegotiationService {
 
-    NegotiationResponseDto createNegotiation(Long purchaseRequestId);
+	NegotiationResponseDto createNegotiation(Long purchaseRequestId, Long authenticatedUserId);
 
-    NegotiationResponseDto getNegotiationById(Long id);
+	NegotiationResponseDto getNegotiationById(Long id, Long authenticatedUserId);
 
-    List<OfferResponseDto> getOffers(Long negotiationId);
+	List<OfferResponseDto> getOffers(Long negotiationId, Long authenticatedUserId);
 
-    OfferResponseDto createOffer(
-            Long negotiationId,
-            CreateOfferRequestDto requestDto,
-            Long userId,
-            String role);
+	OfferResponseDto createOffer(Long negotiationId, CreateOfferRequestDto requestDto, Long userId, String role);
 
-    OfferResponseDto createCounterOffer(
-            Long negotiationId,
-            CounterOfferRequestDto requestDto,
-            Long userId,
-            String role);
+	OfferResponseDto createCounterOffer(Long negotiationId, CounterOfferRequestDto requestDto, Long userId,
+			String role);
 
-    NegotiationResponseDto acceptOffer(
-            Long negotiationId,
-            Long offerId);
+	NegotiationResponseDto acceptOffer(Long negotiationId, Long offerId, Long authenticatedUserId);
 
-    NegotiationResponseDto rejectOffer(
-            Long negotiationId,
-            Long offerId);
+	NegotiationResponseDto rejectOffer(Long negotiationId, Long offerId, Long authenticatedUserId);
 }

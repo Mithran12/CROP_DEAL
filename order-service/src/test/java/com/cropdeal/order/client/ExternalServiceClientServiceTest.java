@@ -31,7 +31,7 @@ class ExternalServiceClientServiceTest {
 
         Object expectedUser = new Object();
 
-        when(userServiceClient.getUserById(1L))
+        when(userServiceClient.getFarmerById(1L))
                 .thenReturn(expectedUser);
 
         Object result =
@@ -57,7 +57,7 @@ class ExternalServiceClientServiceTest {
     @Test
     void shouldHandleUserServiceFailure() {
 
-        when(userServiceClient.getUserById(1L))
+        when(userServiceClient.getFarmerById(1L))
                 .thenThrow(
                         new ExternalServiceException(
                                 "User Service failed"));

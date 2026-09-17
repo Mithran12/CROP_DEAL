@@ -17,10 +17,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-	
-	@Value("${cropdeal.jwt.secret}")
-	private String jwtSecret;
-    
+
+    @Value("${cropdeal.jwt.secret}")
+    private String jwtSecret;
+
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http) throws Exception {
@@ -30,16 +30,18 @@ public class SecurityConfig {
 
             .authorizeHttpRequests(auth -> auth
 
-                // Public endpoints
-            		.requestMatchers(
-            		        "/actuator/health",
-            		        "/actuator/info",
-            		        "/swagger-ui.html",
-            		        "/swagger-ui/**",
-            		        "/v3/api-docs/**"
-            		).permitAll()
+                // PUBLIC ENDPOINTS
 
-                // Purchase Request
+                .requestMatchers(
+                        "/actuator/health",
+                        "/actuator/info",
+                        "/swagger-ui.html",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**"
+                ).permitAll()
+
+                // PURCHASE REQUEST
+
                 .requestMatchers(
                         HttpMethod.POST,
                         "/api/purchase-requests"
@@ -56,12 +58,23 @@ public class SecurityConfig {
                         "/api/purchase-requests/*/cancel"
                 ).hasRole("DEALER")
 
-                // Negotiation
+                .requestMatchers(
+                        HttpMethod.GET,
+                        "/api/purchase-requests/**"
+                ).hasAnyRole(
+                        "FARMER",
+                        "DEALER")
+
+                // NEGOTIATION
+
                 .requestMatchers(
                         "/api/negotiations/**"
-                ).hasAnyRole("FARMER", "DEALER")
+                ).hasAnyRole(
+                        "FARMER",
+                        "DEALER")
 
-                // Orders
+                // ORDERS
+
                 .requestMatchers(
                         HttpMethod.POST,
                         "/api/orders"
@@ -87,24 +100,26 @@ public class SecurityConfig {
                         "/api/orders/*/complete"
                 ).hasRole("DEALER")
 
-                // View individual resources
+                // Order status can be called by an authenticated
+                // farmer or dealer. Service layer checks ownership.
                 .requestMatchers(
-                        HttpMethod.GET,
-                        "/api/purchase-requests/**"
-                ).hasAnyRole("FARMER", "DEALER")
+                        HttpMethod.PATCH,
+                        "/api/orders/*/status"
+                ).hasAnyRole(
+                        "FARMER",
+                        "DEALER")
+
+                // INDIVIDUAL RESOURCE ACCESS
 
                 .requestMatchers(
                         HttpMethod.GET,
                         "/api/orders/**"
-                ).hasAnyRole("FARMER", "DEALER")
+                ).hasAnyRole(
+                        "FARMER",
+                        "DEALER")
 
-                // Order status endpoint
-                .requestMatchers(
-                        HttpMethod.PATCH,
-                        "/api/orders/*/status"
-                ).denyAll()
+                // EVERYTHING ELSE
 
-                // Everything else requires authentication
                 .anyRequest().authenticated()
             )
 

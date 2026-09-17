@@ -26,35 +26,52 @@ public class NegotiationController {
 	private final NegotiationService negotiationService;
 
 	public NegotiationController(NegotiationService negotiationService) {
+
 		this.negotiationService = negotiationService;
 	}
 
+	// CREATE NEGOTIATION
+
 	@Operation(summary = "Create a negotiation", description = "Creates a negotiation for an existing purchase request.")
 	@PostMapping("/{purchaseRequestId}")
-	public ResponseEntity<NegotiationResponseDto> createNegotiation(@PathVariable Long purchaseRequestId) {
+	public ResponseEntity<NegotiationResponseDto> createNegotiation(@PathVariable Long purchaseRequestId,
+			@AuthenticationPrincipal Jwt jwt) {
 
-		NegotiationResponseDto response = negotiationService.createNegotiation(purchaseRequestId);
+		Long authenticatedUserId = ((Number) jwt.getClaim("userId")).longValue();
+
+		NegotiationResponseDto response = negotiationService.createNegotiation(purchaseRequestId, authenticatedUserId);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 
-	@Operation(summary = "Get negotiation by ID", description = "Returns a negotiation by its ID.")
-	@GetMapping("/{id}")
-	public ResponseEntity<NegotiationResponseDto> getNegotiationById(@PathVariable Long id) {
+	// GET NEGOTIATION
 
-		NegotiationResponseDto response = negotiationService.getNegotiationById(id);
+	@Operation(summary = "Get negotiation by ID", description = "Returns a negotiation when the authenticated user is the farmer or dealer associated with it.")
+	@GetMapping("/{id}")
+	public ResponseEntity<NegotiationResponseDto> getNegotiationById(@PathVariable Long id,
+			@AuthenticationPrincipal Jwt jwt) {
+
+		Long authenticatedUserId = ((Number) jwt.getClaim("userId")).longValue();
+
+		NegotiationResponseDto response = negotiationService.getNegotiationById(id, authenticatedUserId);
 
 		return ResponseEntity.ok(response);
 	}
+
+	// GET OFFERS
 
 	@Operation(summary = "Get negotiation offers", description = "Returns all offers associated with a negotiation in chronological order.")
 	@GetMapping("/{id}/offers")
-	public ResponseEntity<List<OfferResponseDto>> getOffers(@PathVariable Long id) {
+	public ResponseEntity<List<OfferResponseDto>> getOffers(@PathVariable Long id, @AuthenticationPrincipal Jwt jwt) {
 
-		List<OfferResponseDto> response = negotiationService.getOffers(id);
+		Long authenticatedUserId = ((Number) jwt.getClaim("userId")).longValue();
+
+		List<OfferResponseDto> response = negotiationService.getOffers(id, authenticatedUserId);
 
 		return ResponseEntity.ok(response);
 	}
+
+	// CREATE OFFER
 
 	@Operation(summary = "Create an offer", description = "Creates a new offer in an active negotiation for the authenticated user.")
 	@PostMapping("/{id}/offer")
@@ -70,6 +87,8 @@ public class NegotiationController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 
+	// CREATE COUNTER OFFER
+
 	@Operation(summary = "Create a counter offer", description = "Creates a counter offer for an existing negotiation.")
 	@PostMapping("/{id}/counter-offer")
 	public ResponseEntity<OfferResponseDto> createCounterOffer(@PathVariable Long id,
@@ -84,20 +103,30 @@ public class NegotiationController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 
+	// ACCEPT OFFER
+
 	@Operation(summary = "Accept an offer", description = "Accepts the selected offer and finalizes the negotiation.")
 	@PatchMapping("/{id}/accept/{offerId}")
-	public ResponseEntity<NegotiationResponseDto> acceptOffer(@PathVariable Long id, @PathVariable Long offerId) {
+	public ResponseEntity<NegotiationResponseDto> acceptOffer(@PathVariable Long id, @PathVariable Long offerId,
+			@AuthenticationPrincipal Jwt jwt) {
 
-		NegotiationResponseDto response = negotiationService.acceptOffer(id, offerId);
+		Long authenticatedUserId = ((Number) jwt.getClaim("userId")).longValue();
+
+		NegotiationResponseDto response = negotiationService.acceptOffer(id, offerId, authenticatedUserId);
 
 		return ResponseEntity.ok(response);
 	}
 
+	// REJECT OFFER
+
 	@Operation(summary = "Reject an offer", description = "Rejects the selected offer in the negotiation.")
 	@PatchMapping("/{id}/reject/{offerId}")
-	public ResponseEntity<NegotiationResponseDto> rejectOffer(@PathVariable Long id, @PathVariable Long offerId) {
+	public ResponseEntity<NegotiationResponseDto> rejectOffer(@PathVariable Long id, @PathVariable Long offerId,
+			@AuthenticationPrincipal Jwt jwt) {
 
-		NegotiationResponseDto response = negotiationService.rejectOffer(id, offerId);
+		Long authenticatedUserId = ((Number) jwt.getClaim("userId")).longValue();
+
+		NegotiationResponseDto response = negotiationService.rejectOffer(id, offerId, authenticatedUserId);
 
 		return ResponseEntity.ok(response);
 	}

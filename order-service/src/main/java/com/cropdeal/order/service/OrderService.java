@@ -10,19 +10,26 @@ import com.cropdeal.order.enums.PaymentStatus;
 
 public interface OrderService {
 
-	OrderResponseDto createOrder(CreateOrderRequestDto requestDto, Long dealerId);
+    OrderResponseDto createOrder(CreateOrderRequestDto requestDto, Long dealerId);
 
-	OrderResponseDto getOrderById(Long id);
+    OrderResponseDto getOrderById(Long id, Long authenticatedUserId);
 
-	List<OrderResponseDto> getOrdersByFarmer(Long farmerId);
+    List<OrderResponseDto> getOrdersByFarmer(Long farmerId, Long authenticatedUserId);
 
-	List<OrderResponseDto> getOrdersByDealer(Long dealerId);
+    List<OrderResponseDto> getOrdersByDealer(Long dealerId, Long authenticatedUserId);
 
-	OrderResponseDto updateOrderStatus(Long id, UpdateOrderStatusRequestDto requestDto, Long changedBy);
+    OrderResponseDto updateOrderStatus(
+            Long id,
+            UpdateOrderStatusRequestDto requestDto,
+            Long changedBy,
+            String role);
 
-	OrderResponseDto cancelOrder(Long id, Long changedBy);
+    OrderResponseDto cancelOrder(Long id, Long changedBy);
 
-	OrderResponseDto completeOrder(Long id, Long changedBy);
+    OrderResponseDto completeOrder(Long id, Long changedBy);
 
-	OrderResponseDto handlePaymentEvent(Long orderId, PaymentStatus paymentStatus, BigDecimal amount);
+    OrderResponseDto handlePaymentEvent(
+            Long orderId,
+            PaymentStatus paymentStatus,
+            BigDecimal amount);
 }

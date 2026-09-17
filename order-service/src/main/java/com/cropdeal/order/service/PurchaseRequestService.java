@@ -11,15 +11,27 @@ public interface PurchaseRequestService {
             CreatePurchaseRequestDto requestDto,
             Long dealerId);
 
-    PurchaseRequestResponseDto getPurchaseRequestById(Long id);
+    PurchaseRequestResponseDto getPurchaseRequestById(
+            Long id,
+            Long authenticatedUserId);
 
-    List<PurchaseRequestResponseDto> getPurchaseRequestsByFarmer(Long farmerId);
+    List<PurchaseRequestResponseDto> getPurchaseRequestsByFarmer(
+            Long farmerId,
+            Long authenticatedUserId);
 
-    List<PurchaseRequestResponseDto> getPurchaseRequestsByDealer(Long dealerId);
+    List<PurchaseRequestResponseDto> getPurchaseRequestsByDealer(
+            Long dealerId,
+            Long authenticatedUserId);
 
-    PurchaseRequestResponseDto acceptPurchaseRequest(Long id);
+    PurchaseRequestResponseDto acceptPurchaseRequest(
+            Long id,
+            Long authenticatedUserId);
 
-    PurchaseRequestResponseDto rejectPurchaseRequest(Long id);
+    PurchaseRequestResponseDto rejectPurchaseRequest(
+            Long id,
+            Long authenticatedUserId);
 
-    PurchaseRequestResponseDto cancelPurchaseRequest(Long id);
+    PurchaseRequestResponseDto cancelPurchaseRequest(
+            Long id,
+            Long authenticatedUserId);
 }

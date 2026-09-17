@@ -41,55 +41,87 @@ public class PurchaseRequestController {
 
 	@Operation(summary = "Get purchase request by ID", description = "Returns a purchase request by its ID.")
 	@GetMapping("/{id}")
-	public ResponseEntity<PurchaseRequestResponseDto> getPurchaseRequestById(@PathVariable Long id) {
+	public ResponseEntity<PurchaseRequestResponseDto> getPurchaseRequestById(
+	        @PathVariable Long id,
+	        @AuthenticationPrincipal Jwt jwt) {
 
-		PurchaseRequestResponseDto response = purchaseRequestService.getPurchaseRequestById(id);
+	    Long userId = ((Number) jwt.getClaim("userId")).longValue();
 
-		return ResponseEntity.ok(response);
+	    PurchaseRequestResponseDto response =
+	            purchaseRequestService.getPurchaseRequestById(id, userId);
+
+	    return ResponseEntity.ok(response);
 	}
 
 	@Operation(summary = "Get farmer purchase requests", description = "Returns purchase requests associated with the specified farmer.")
 	@GetMapping("/farmer/{farmerId}")
-	public ResponseEntity<List<PurchaseRequestResponseDto>> getPurchaseRequestsByFarmer(@PathVariable Long farmerId) {
+	public ResponseEntity<List<PurchaseRequestResponseDto>> getPurchaseRequestsByFarmer(
+	        @PathVariable Long farmerId,
+	        @AuthenticationPrincipal Jwt jwt) {
 
-		List<PurchaseRequestResponseDto> response = purchaseRequestService.getPurchaseRequestsByFarmer(farmerId);
+	    Long userId = ((Number) jwt.getClaim("userId")).longValue();
 
-		return ResponseEntity.ok(response);
+	    List<PurchaseRequestResponseDto> response =
+	            purchaseRequestService.getPurchaseRequestsByFarmer(
+	                    farmerId, userId);
+
+	    return ResponseEntity.ok(response);
 	}
 
 	@Operation(summary = "Get dealer purchase requests", description = "Returns purchase requests created by the specified dealer.")
 	@GetMapping("/dealer/{dealerId}")
-	public ResponseEntity<List<PurchaseRequestResponseDto>> getPurchaseRequestsByDealer(@PathVariable Long dealerId) {
+	public ResponseEntity<List<PurchaseRequestResponseDto>> getPurchaseRequestsByDealer(
+	        @PathVariable Long dealerId,
+	        @AuthenticationPrincipal Jwt jwt) {
 
-		List<PurchaseRequestResponseDto> response = purchaseRequestService.getPurchaseRequestsByDealer(dealerId);
+	    Long userId = ((Number) jwt.getClaim("userId")).longValue();
 
-		return ResponseEntity.ok(response);
+	    List<PurchaseRequestResponseDto> response =
+	            purchaseRequestService.getPurchaseRequestsByDealer(
+	                    dealerId, userId);
+
+	    return ResponseEntity.ok(response);
 	}
 
 	@Operation(summary = "Accept a purchase request", description = "Accepts a pending purchase request for the authenticated farmer.")
 	@PatchMapping("/{id}/accept")
-	public ResponseEntity<PurchaseRequestResponseDto> acceptPurchaseRequest(@PathVariable Long id) {
+	public ResponseEntity<PurchaseRequestResponseDto> acceptPurchaseRequest(
+	        @PathVariable Long id,
+	        @AuthenticationPrincipal Jwt jwt) {
 
-		PurchaseRequestResponseDto response = purchaseRequestService.acceptPurchaseRequest(id);
+	    Long userId = ((Number) jwt.getClaim("userId")).longValue();
 
-		return ResponseEntity.ok(response);
+	    PurchaseRequestResponseDto response =
+	            purchaseRequestService.acceptPurchaseRequest(id, userId);
+
+	    return ResponseEntity.ok(response);
 	}
 
 	@Operation(summary = "Reject a purchase request", description = "Rejects a pending purchase request for the authenticated farmer.")
 	@PatchMapping("/{id}/reject")
-	public ResponseEntity<PurchaseRequestResponseDto> rejectPurchaseRequest(@PathVariable Long id) {
+	public ResponseEntity<PurchaseRequestResponseDto> rejectPurchaseRequest(
+	        @PathVariable Long id,
+	        @AuthenticationPrincipal Jwt jwt) {
 
-		PurchaseRequestResponseDto response = purchaseRequestService.rejectPurchaseRequest(id);
+	    Long userId = ((Number) jwt.getClaim("userId")).longValue();
 
-		return ResponseEntity.ok(response);
+	    PurchaseRequestResponseDto response =
+	            purchaseRequestService.rejectPurchaseRequest(id, userId);
+
+	    return ResponseEntity.ok(response);
 	}
 
 	@Operation(summary = "Cancel a purchase request", description = "Cancels a pending purchase request for the authenticated dealer.")
 	@PatchMapping("/{id}/cancel")
-	public ResponseEntity<PurchaseRequestResponseDto> cancelPurchaseRequest(@PathVariable Long id) {
+	public ResponseEntity<PurchaseRequestResponseDto> cancelPurchaseRequest(
+	        @PathVariable Long id,
+	        @AuthenticationPrincipal Jwt jwt) {
 
-		PurchaseRequestResponseDto response = purchaseRequestService.cancelPurchaseRequest(id);
+	    Long userId = ((Number) jwt.getClaim("userId")).longValue();
 
-		return ResponseEntity.ok(response);
+	    PurchaseRequestResponseDto response =
+	            purchaseRequestService.cancelPurchaseRequest(id, userId);
+
+	    return ResponseEntity.ok(response);
 	}
 }

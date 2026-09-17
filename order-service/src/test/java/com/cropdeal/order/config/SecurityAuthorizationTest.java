@@ -27,7 +27,7 @@ import com.nimbusds.jwt.SignedJWT;
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestPropertySource(properties = {
-        "jwt.secret=cropdeal-test-secret-key-1234567890"
+        "cropdeal.jwt.secret=cropdeal-test-secret-key-1234567890"
 })
 class SecurityAuthorizationTest {
 

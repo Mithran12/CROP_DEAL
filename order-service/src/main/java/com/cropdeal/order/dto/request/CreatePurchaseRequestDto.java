@@ -24,10 +24,6 @@ public class CreatePurchaseRequestDto {
     @Positive(message = "Crop ID must be positive")
     private Long cropId;
 
-    @NotNull(message = "Farmer ID is required")
-    @Positive(message = "Farmer ID must be positive")
-    private Long farmerId;
-
     @NotNull(message = "Requested quantity is required")
     @DecimalMin(value = "0.001", message = "Requested quantity must be greater than zero")
     private BigDecimal requestedQuantity;

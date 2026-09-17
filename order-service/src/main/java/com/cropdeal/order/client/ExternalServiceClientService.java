@@ -21,7 +21,7 @@ public class ExternalServiceClientService {
 	@CircuitBreaker(name = "userService", fallbackMethod = "userServiceFallback")
 	public Object getUserById(Long userId) {
 
-		return userServiceClient.getUserById(userId);
+		return userServiceClient.getFarmerById(userId);
 	}
 
 	@CircuitBreaker(name = "cropService", fallbackMethod = "cropServiceFallback")
