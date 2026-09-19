@@ -1,0 +1,5 @@
+/Users/mithran/Desktop/cropdeal-fixed-verified/api-gateway/src/main/java/com/cropdeal/api/ApiGatewayApplication.java
+/Users/mithran/Desktop/cropdeal-fixed-verified/api-gateway/src/main/java/com/cropdeal/api/ServletInitializer.java
+/Users/mithran/Desktop/cropdeal-fixed-verified/api-gateway/src/main/java/com/cropdeal/gateway/security/JwtAuthenticationFilter.java
+/Users/mithran/Desktop/cropdeal-fixed-verified/api-gateway/src/main/java/com/cropdeal/gateway/security/JwtService.java
+/Users/mithran/Desktop/cropdeal-fixed-verified/api-gateway/src/main/java/com/cropdeal/gateway/security/SecurityConfig.java
