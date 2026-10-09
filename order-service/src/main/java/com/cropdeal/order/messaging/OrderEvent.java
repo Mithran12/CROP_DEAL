@@ -1,0 +1,82 @@
+package com.cropdeal.order.messaging;
+
+public class OrderEvent {
+
+    private Long orderId;
+    private String orderNumber;
+    private Long farmerId;
+    private Long dealerId;
+    private Long cropId;
+    private String status;
+    private String message;
+    private Long recipientId;
+
+    public OrderEvent() {
+    }
+
+    public Long getRecipientId() {
+        return recipientId;
+    }
+
+    public void setRecipientId(Long recipientId) {
+        this.recipientId = recipientId;
+    }
+
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+
+	public Long getFarmerId() {
+		return farmerId;
+	}
+
+	public void setFarmerId(Long farmerId) {
+		this.farmerId = farmerId;
+	}
+
+	public Long getDealerId() {
+		return dealerId;
+	}
+
+	public void setDealerId(Long dealerId) {
+		this.dealerId = dealerId;
+	}
+
+	public Long getCropId() {
+		return cropId;
+	}
+
+	public void setCropId(Long cropId) {
+		this.cropId = cropId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+  
+}
