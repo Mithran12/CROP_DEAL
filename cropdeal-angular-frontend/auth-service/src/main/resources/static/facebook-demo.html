@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continue with Facebook - CropDeal Demo</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            width: min(440px, 92vw);
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,.12);
+            padding: 28px;
+        }
+        .brand {
+            color: #1877f2;
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            color: #65676b;
+            margin-bottom: 22px;
+        }
+        .account {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #dddfe2;
+            background: #fff;
+            border-radius: 10px;
+            padding: 13px;
+            margin: 10px 0;
+            cursor: pointer;
+            text-align: left;
+        }
+        .account.selected {
+            border: 2px solid #1877f2;
+            background: #eef5ff;
+        }
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #e4e6eb;
+            color: #1c1e21;
+            font-weight: 700;
+        }
+        .name { font-weight: 700; color: #1c1e21; }
+        .role { color: #65676b; font-size: 13px; margin-top: 3px; }
+        button.continue {
+            width: 100%;
+            border: 0;
+            border-radius: 8px;
+            padding: 13px;
+            margin-top: 14px;
+            background: #1877f2;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button.continue:disabled { background: #bcc0c4; cursor: not-allowed; }
+        .message { margin-top: 14px; color: #d93025; font-size: 14px; }
+        .note { margin-top: 18px; color: #65676b; font-size: 12px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="brand">facebook</div>
+    <div class="subtitle">Choose a CropDeal demo account to continue</div>
+    <div id="accounts">Loading accounts...</div>
+    <button id="continueButton" class="continue" disabled>Continue</button>
+    <div id="message" class="message"></div>
+    <div class="note">
+        Demo only. No Facebook password, OTP, email entry, or real Facebook verification is used.
+    </div>
+</div>
+
+<script>
+    let selectedAccountId = null;
+
+    async function loadAccounts() {
+        const container = document.getElementById("accounts");
+        try {
+            const response = await fetch("/auth/facebook/accounts");
+            if (!response.ok) throw new Error("Unable to load demo accounts.");
+            const accounts = await response.json();
+
+            container.innerHTML = "";
+            accounts.forEach(account => {
+                const button = document.createElement("button");
+                button.className = "account";
+                button.type = "button";
+                button.innerHTML =
+                    '<div class="avatar">' + account.displayName.charAt(0) + '</div>' +
+                    '<div><div class="name">' + account.displayName + '</div>' +
+                    '<div class="role">' + account.role + '</div></div>';
+
+                button.addEventListener("click", () => {
+                    document.querySelectorAll(".account").forEach(item => item.classList.remove("selected"));
+                    button.classList.add("selected");
+                    selectedAccountId = account.accountId;
+                    document.getElementById("continueButton").disabled = false;
+                    document.getElementById("message").textContent = "";
+                });
+
+                container.appendChild(button);
+            });
+        } catch (error) {
+            container.textContent = error.message;
+        }
+    }
+
+    document.getElementById("continueButton").addEventListener("click", async () => {
+        if (!selectedAccountId) return;
+
+        const button = document.getElementById("continueButton");
+        button.disabled = true;
+        button.textContent = "Continuing...";
+        document.getElementById("message").textContent = "";
+
+        try {
+            const response = await fetch("/auth/facebook/mock", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({accountId: selectedAccountId})
+            });
+
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+
+            const auth = await response.json();
+            localStorage.setItem("cropdealToken", auth.token);
+            localStorage.setItem("cropdealUser", JSON.stringify({
+                userId: auth.userId,
+                email: auth.email,
+                role: auth.role
+            }));
+
+            window.location.href = auth.redirectPath;
+        } catch (error) {
+            document.getElementById("message").textContent = error.message;
+            button.disabled = false;
+            button.textContent = "Continue";
+        }
+    });
+
+    loadAccounts();
+</script>
+</body>
+</html>
