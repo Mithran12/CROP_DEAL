@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="100%" height="100%">
+  <defs>
+    <linearGradient id="defBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eafaf1"/>
+      <stop offset="100%" stop-color="#d4efdf"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="150" fill="url(#defBg)" rx="12"/>
+  <circle cx="155" cy="40" r="20" fill="#a9dfbf" opacity="0.4"/>
+  <!-- Generic Harvest Sprout -->
+  <g transform="translate(100, 80)">
+    <!-- Soil Mound -->
+    <path d="M-40,25 Q0,10 40,25 Z" fill="#784212"/>
+    <!-- Stem -->
+    <path d="M0,20 Q-2,-10 0,-35" stroke="#27ae60" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Left Leaf -->
+    <path d="M-1,-10 Q-30,-30 -35,-8 Q-15,-2 -1,-10" fill="#2ecc71"/>
+    <!-- Right Leaf -->
+    <path d="M1,-20 Q30,-40 35,-18 Q15,-12 1,-20" fill="#27ae60"/>
+  </g>
+  <text x="100" y="140" font-family="'DM Sans',sans-serif" font-size="12" font-weight="700" fill="#1e8449" text-anchor="middle">Certified Crop Deal Harvest</text>
+</svg>
