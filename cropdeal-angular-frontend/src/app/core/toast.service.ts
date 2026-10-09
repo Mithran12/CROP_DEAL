@@ -1,0 +1,1 @@
+import{Injectable}from'@angular/core';@Injectable({providedIn:'root'})export class ToastService{message='';type='success';show(m:string,t:'success'|'error'='success'){this.message=m;this.type=t;setTimeout(()=>this.message='',3000)}}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="100%" height="100%">
+  <defs>
+    <linearGradient id="tomatoBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdedec"/>
+      <stop offset="100%" stop-color="#fadbd8"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e74c3c"/>
+      <stop offset="100%" stop-color="#c0392b"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="150" fill="url(#tomatoBg)" rx="12"/>
+  <circle cx="160" cy="35" r="18" fill="#f5b7b1" opacity="0.4"/>
+  <!-- Fresh Red Tomatoes -->
+  <g transform="translate(100, 75)">
+    <!-- Small tomato behind -->
+    <circle cx="28" cy="4" r="22" fill="#d9534f"/>
+    <!-- Main Big Tomato -->
+    <ellipse cx="-8" cy="2" rx="34" ry="30" fill="url(#redGrad)"/>
+    <ellipse cx="-16" cy="-8" rx="8" ry="4" fill="#ffffff" opacity="0.3" transform="rotate(-30, -16, -8)"/>
+    <!-- Leaves / Calyx -->
+    <path d="M-8,-28 Q-4,-40 0,-42 Q-2,-30 -8,-28" fill="#229954"/>
+    <path d="M-8,-28 Q-22,-34 -30,-30 Q-18,-26 -8,-28" fill="#27ae60"/>
+    <path d="M-8,-28 Q6,-34 14,-30 Q2,-26 -8,-28" fill="#27ae60"/>
+    <path d="M-8,-28 Q-16,-20 -20,-16 Q-12,-22 -8,-28" fill="#1e8449"/>
+    <path d="M-8,-28 Q0,-20 4,-16 Q-4,-22 -8,-28" fill="#1e8449"/>
+  </g>
+  <text x="100" y="140" font-family="'DM Sans',sans-serif" font-size="12" font-weight="700" fill="#78281f" text-anchor="middle">Farm Fresh Tomatoes</text>
+</svg>
