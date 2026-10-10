@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: cropdeal_auth_db
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - cropdeal_mysql_data:/var/lib/mysql
     healthcheck:
@@ -16,12 +16,13 @@ services:
       retries: 10
 
   config-server:
-    build: ./config-server
+    build: ./backend/config-server
     container_name: cropdeal-config-server
     ports:
       - "8888:8888"
+
   eureka-server:
-    build: ./eureka-server
+    build: ./backend/eureka-server
     container_name: cropdeal-eureka-server
     ports:
       - "8761:8761"
@@ -30,7 +31,7 @@ services:
         condition: service_started
 
   auth-service:
-    build: ./auth-service
+    build: ./backend/auth-service
     container_name: cropdeal-auth-service
     environment:
       DB_HOST: mysql
@@ -53,7 +54,7 @@ services:
         condition: service_started
 
   api-gateway:
-    build: ./api-gateway
+    build: ./backend/api-gateway
     container_name: cropdeal-api-gateway
     environment:
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
