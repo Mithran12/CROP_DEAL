@@ -1,22 +1,20 @@
-<<<<<<< HEAD
+# Node.js and Angular
 node_modules/
 dist/
 .angular/
+
+# Environment variables and secrets
 .env
-=======
-# Compiled class file
+.env.*
+!.env.example
+
+# Java compiled files
 *.class
 
-# Log file
-*.log
+# Maven build output
+**/target/
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# Java packages
 *.jar
 *.war
 *.nar
@@ -25,11 +23,10 @@ dist/
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Java crash logs
 hs_err_pid*
 replay_pid*
-# Maven
-target/
+*.log
 
 # Eclipse
 .classpath
@@ -46,12 +43,10 @@ target/
 # macOS
 .DS_Store
 
-# Environment variables / secrets
-.env
-.env.*
-!.env.example
-
-# Build output
+# Other build output
 build/
 out/
->>>>>>> 540cf6fedc4f02b5b549329aee46a945e6f185cd
+
+# Temporary Java files
+*.ctxt
+.mtj.tmp/

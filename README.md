@@ -909,4 +909,3 @@ By combining **Spring Boot, Spring Cloud, Eureka, RabbitMQ, Angular, centralized
 <img src="assets/CropThanks.png" alt="CropDeal" width="100%"/>
 
 </div>
->>>>>>> 540cf6fedc4f02b5b549329aee46a945e6f185cd
